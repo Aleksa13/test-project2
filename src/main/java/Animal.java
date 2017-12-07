@@ -8,6 +8,7 @@ public interface Animal {
      */
     void eat();
     void say();
+    void makeFriendsWith();
 
     /***
      * Get age of Animal

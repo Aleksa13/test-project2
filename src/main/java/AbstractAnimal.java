@@ -15,4 +15,9 @@ public abstract class AbstractAnimal implements Animal {
         System.out.println("Animal Age is 10");
         return 10;
     }
+
+    public void makeFriendsWith() {
+        System.out.println("Animal has friend");
+
+    }
 }

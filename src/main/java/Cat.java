@@ -26,8 +26,13 @@ public class Cat extends AbstractAnimal {
 
     @Override
     public void eat() {
-        super.eat();
+        //super.eat();
         System.out.println("Cat "+ name+ "likes MILK");
 
+    }
+
+    @Override
+    public void makeFriendsWith() {
+        System.out.println("Cat" +name + "has friend - Dog ");
     }
 }

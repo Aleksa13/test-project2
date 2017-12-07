@@ -3,13 +3,14 @@
  */
 public class Dog extends AbstractAnimal {
 
-      int age;
-      String name;
+    int age;
+    String name;
 
-    Dog(String name , int age) {
+    Dog(String name, int age) {
         this.name = name;
         this.age = age;
     }
+
     @Override
     public void say() {
         System.out.println("Dog" + name + " says WOOOOOOOF");
@@ -19,11 +20,15 @@ public class Dog extends AbstractAnimal {
     @Override
     public int getAge() {
         System.out.println("Dog " + name + " age is " + age);
-    return age;
+        return age;
     }
 
     public void eat() {
-        super.eat();
+        //super.eat();
         System.out.println("Dog " + name + " likes Beef");
+    }
+
+    public void makeFriendsWith() {
+        System.out.println("Dog " + name + " has friend - Dragon ");
     }
 }
