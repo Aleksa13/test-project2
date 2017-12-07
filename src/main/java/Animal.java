@@ -8,11 +8,12 @@ public interface Animal {
      */
     void eat();
     void say();
-    void makeFriendsWith();
+    void makeFriendsWith (Animal animal);
 
     /***
      * Get age of Animal
      * @return int value
      */
     int getAge();
+
 }

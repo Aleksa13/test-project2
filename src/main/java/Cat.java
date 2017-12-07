@@ -3,12 +3,9 @@
  */
 public class Cat extends AbstractAnimal {
 
-    int age;
-    String name;
 
     Cat(String name , int age){
-        this.name=name;
-        this.age=age;
+        super(name, age);
     }
 
     @Override
@@ -31,8 +28,15 @@ public class Cat extends AbstractAnimal {
 
     }
 
-    @Override
+    //@Override
     public void makeFriendsWith() {
         System.out.println("Cat" +name + "has friend - Dog ");
+
+    }
+
+    @Override
+    public String toString() {
+        return "Cat name='" + name + '\'' +
+                '}';
     }
 }

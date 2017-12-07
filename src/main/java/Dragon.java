@@ -3,13 +3,8 @@
  */
 public class Dragon extends AbstractAnimal {
 
-    int age;
-    String name;
-
-
-    Dragon(String name, int age) {
-        this.name = name;
-        this.age = age;
+    Dragon(String name , int age){
+        super(name, age);
     }
 
     public void say() {

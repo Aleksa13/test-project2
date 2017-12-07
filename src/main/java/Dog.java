@@ -3,12 +3,8 @@
  */
 public class Dog extends AbstractAnimal {
 
-    int age;
-    String name;
-
-    Dog(String name, int age) {
-        this.name = name;
-        this.age = age;
+    Dog(String name , int age){
+        super(name, age);
     }
 
     @Override

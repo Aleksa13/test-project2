@@ -3,6 +3,16 @@
  */
 public abstract class AbstractAnimal implements Animal {
 
+    public int age;
+    public String name;
+
+    AbstractAnimal(String name, int age) {
+        this.age=age;
+        this.name=name;
+    }
+
+
+
     public void eat() {
         System.out.println("Animal eat");
     }
@@ -16,8 +26,18 @@ public abstract class AbstractAnimal implements Animal {
         return 10;
     }
 
-    public void makeFriendsWith() {
-        System.out.println("Animal has friend");
+    //public void makeFriendsWith() {
+        //System.out.println("Animal has friend");
+
+    //}
+
+    public String getName() {
+        System.out.println("Animal name is" + name);
+        return name;
+    }
+
+    public void makeFriendsWith(Animal animal) {
+        System.out.println(name + "make new friends with" + name);
 
     }
 }
