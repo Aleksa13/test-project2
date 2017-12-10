@@ -1,5 +1,7 @@
 import org.testng.annotations.*;
 
+import javax.swing.plaf.basic.BasicLookAndFeel;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -39,34 +41,49 @@ public class TestAnimal {
 
 
     @BeforeMethod
-    public void Method(){
+    public void Method() {
         System.out.println("I am a before method");
     }
 
     @BeforeClass
-    public void Class(){
+    public void Class() {
         System.out.println("I am a before Class");
     }
 
     @BeforeSuite
-    public void Suite(){
+    public void Suite() {
         System.out.println("I am a before Suite");
     }
 
-    @BeforeGroups
-    public void Groups(){
-        System.out.println("I am a before Groups");
+    @BeforeTest
+    public void Test() {
+        System.out.println("I am a before Test");
     }
 
 
-   // @AfterMethod
-    ///public void Method(){
-       /// System.out.println("I am a after Method");
-   /// }
+    @AfterMethod
+    public void Method1() {
+        System.out.println("I am a after Method1");
+    }
+
+    @AfterClass
+    public void Class1() {
+        System.out.println("I am a after Class");
+    }
+
+    @AfterSuite
+    public void Suite1() {
+        System.out.println("I am a after Suite");
+    }
+
+    @AfterTest
+    public void Test1() {
+        System.out.println("I am a after Test");
+    }
 
 
     @Test
-    public void firstAnimalTest(){
+    public void firstAnimalTest() {
 
         System.out.println("I am a test ONE");
         assertTrue(true, "i pass");
@@ -74,14 +91,33 @@ public class TestAnimal {
 
 
     @Test
-    public void secondAnimalTest(){
-        Cat Tom = new Cat ("Tom",2);
-        Cat Rora = new Cat ("Rora",4);
+    public void secondAnimalTest() {
+        Cat Tom = new Cat("Tom", 2);
+        Cat Rora = new Cat("Rora", 4);
 
         System.out.println("I am a test SECOND");
 
-        assertEquals(Tom,Rora , "Same cat?");
-        assertEquals(2 ,5,"Expected value should be 5");
+        assertEquals(Tom, Rora, "Same cat?");
+        assertEquals(2, 5, "Expected value should be 5");
 
     }
+
+    @Test
+    public void thirdAnimalTest() {
+        Cat Tom = new Cat("Tom", 2);
+        Cat Rora = new Cat("Rora", 4);
+
+        System.out.println("I am a 3rd test");
+        assertEquals(2, 2, "Same age?");
+    }
+
+    @Test
+    public void fourthAnimalTest() {
+        Cat Tom = new Cat("Tom",3);
+        Cat Rora = new Cat("Rora", 4);
+
+        System.out.println("I am a 4th test");
+        assertTrue(false,"Cat is friend with Animals");
+    }
+
 }

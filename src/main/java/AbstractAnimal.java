@@ -6,11 +6,11 @@ public abstract class AbstractAnimal implements Animal {
     public int age;
     public String name;
 
+
     AbstractAnimal(String name, int age) {
         this.age=age;
         this.name=name;
     }
-
 
 
     public void eat() {
