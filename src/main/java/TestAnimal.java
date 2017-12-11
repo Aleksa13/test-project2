@@ -4,8 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-
-import javax.swing.plaf.basic.BasicLookAndFeel;
+import sun.jvm.hotspot.interpreter.BytecodeRet;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -17,9 +16,9 @@ import static org.testng.Assert.assertTrue;
 
 
 public class TestAnimal {
-    Cat Tom = new Cat(" Tom",3);
+    Cat Tom = new Cat(" Tom", 3);
     Cat Rora = new Cat(" Rora", 4);
-    Dragon Baloo = new Dragon( " Baloo", 150);
+    Dragon Baloo = new Dragon(" Baloo", 150);
     SoftAssert softAssert = new SoftAssert();
 
 //    public static void main(String[] args) {
@@ -72,8 +71,8 @@ public class TestAnimal {
 
     @BeforeGroups
     public void Groups() {
-       System.out.println("I am a before Groups");
-   }
+        System.out.println("I am a before Groups");
+    }
 
 
     @AfterMethod
@@ -96,12 +95,13 @@ public class TestAnimal {
         System.out.println("I am a after Test");
     }
 
-   @AfterGroups
-   public void Groups1() {
-       System.out.println("I am a after Groups"); }
+    @AfterGroups
+    public void Groups1() {
+        System.out.println("I am a after Groups");
+    }
 
 
-    @Test(groups= {"animal"})
+    @Test(groups = {"animal"})
     public void firstAnimalTest() {
 
         System.out.println("I am a test ONE");
@@ -109,10 +109,10 @@ public class TestAnimal {
     }
 
 
-    @Test (enabled = true)
+    @Test(enabled = true)
     public void secondAnimalTest() {
-      // Cat Tom = new Cat("Tom", 2);
-     //   Cat Rora = new Cat("Rora", 4);
+        // Cat Tom = new Cat("Tom", 2);
+        //   Cat Rora = new Cat("Rora", 4);
 
         System.out.println("I am a test SECOND");
 
@@ -159,23 +159,55 @@ public class TestAnimal {
         System.out.println("-------");
         System.out.println(Tom.friends);
 
-        softAssert.assertTrue(Rora.friends.contains(Baloo)," Rora is friend with Baloo");
+        softAssert.assertTrue(Rora.friends.contains(Baloo), " Rora is friend with Baloo");
         softAssert.assertFalse(Baloo.isHasFriends(), "Baloo;s friends");
         softAssert.assertTrue(Baloo.friends.contains(Tom), " Baloo is friend with Tom");
         softAssert.assertAll();
     }
 
-    @Test
+    //@Test
     public void testGoogleSearch() throws InterruptedException {
         // Optional, if not specified, WebDriver will search your path for chromedriver.
         System.setProperty("webdriver.chrome.driver", "chromedriver");
-
         WebDriver driver = new ChromeDriver();
         driver.get("http://www.google.com/xhtml");
         Thread.sleep(5000);  // Let the user actually see something!
         WebElement searchBox = driver.findElement(By.name("q"));
         searchBox.sendKeys("ChromeDriver");
         searchBox.submit();
+        Thread.sleep(5000);  // Let the user actually see something!
+        driver.quit();
+    }
+
+    @Test
+    public void testPage() throws InterruptedException {
+        // Optional, if not specified, WebDriver will search your path for chromedriver.
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
+        WebDriver driver = new ChromeDriver();
+//        driver.get("https://www.w3schools.com/css/default.asp");
+//        Thread.sleep(5000);  // Let the user actually see something!
+//        WebElement Homebutton = driver.findElement(By.cssSelector("a.w3-left.w3-btn"));
+//        WebElement Nextbutton = driver.findElement(By.cssSelector("a.w3-right.w3-btn"));
+//
+//        Nextbutton.isDisplayed();
+//        Homebutton.isDisplayed();
+//
+//        WebElement TryIt = driver.findElement(By.cssSelector("a.w3-btn.w3-margin-bottom"));
+//        TryIt.click();
+
+        driver.get("https://www.w3schools.com/css/tryit.asp?filename=trycss_default");
+
+        //WebElement editfield = driver.findElement(By.cssSelector("#textareawrapper div div.CodeMirror-scroll div.CodeMirror-sizer div div div div.CodeMirror-code"));
+        WebElement editfield = driver.findElement(By.cssSelector("#textareawrapper div div.CodeMirror-scroll div.CodeMirror-sizer div div div div.CodeMirror-code pre:nth-child(22) span span:nth-child(4)"));
+
+        editfield.click();
+        editfield.clear();
+        editfield.sendKeys("<p><a> href=https://www.w3schools.com/html/>Visit our HTML tutorial</a></p>");
+
+
+
+        WebElement Runbutton = driver.findElement(By.cssSelector("body div.trytopnav div button"));
+        Runbutton.click();
         Thread.sleep(5000);  // Let the user actually see something!
         driver.quit();
     }
