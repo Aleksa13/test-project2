@@ -8,6 +8,13 @@ public class Dog extends AbstractAnimal {
     }
 
     @Override
+    public String toString() {
+        return "Dog{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
     public void say() {
         System.out.println("Dog" + name + " says WOOOOOOOF");
 

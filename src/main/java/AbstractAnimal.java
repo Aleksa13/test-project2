@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Created by aleksandra on 12/5/17.
  */
@@ -5,13 +7,33 @@ public abstract class AbstractAnimal implements Animal {
 
     public int age;
     public String name;
+    private boolean hasFriends;
+    public ArrayList<Animal> friends = new ArrayList<Animal>();
 
+    @Override
+    public String toString() {
+        return "AbstractAnimal{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 
     AbstractAnimal(String name, int age) {
         this.age=age;
         this.name=name;
     }
 
+    public void addFriend(Animal animal){
+        this.friends.add(animal);
+    }
+
+
+    public boolean isHasFriends() {
+        return hasFriends;
+    }
+
+    public void setHasFriends(boolean hasFriends) {
+        this.hasFriends = hasFriends;
+    }
 
     public void eat() {
         System.out.println("Animal eat");
@@ -37,7 +59,12 @@ public abstract class AbstractAnimal implements Animal {
     }
 
     public void makeFriendsWith(Animal animal) {
-        System.out.println(name + "make new friends with" + name);
+        this.friends.add(animal);
+        animal.addFriend(this);
+
+        System.out.println(name + " make new friends with " + animal.getName());
+        hasFriends =  true;
+        animal.setHasFriends(true);
 
     }
 }

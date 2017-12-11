@@ -3,6 +3,7 @@ import org.testng.annotations.*;
 import javax.swing.plaf.basic.BasicLookAndFeel;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 /**
@@ -11,6 +12,9 @@ import static org.testng.Assert.assertTrue;
 
 
 public class TestAnimal {
+    Cat Tom = new Cat("Tom",3);
+    Cat Rora = new Cat("Rora", 4);
+    Dragon Baloo = new Dragon( "Baloo", 150);
 
 //    public static void main(String[] args) {
 //        System.out.println("Hello World!");
@@ -92,8 +96,8 @@ public class TestAnimal {
 
     @Test
     public void secondAnimalTest() {
-        Cat Tom = new Cat("Tom", 2);
-        Cat Rora = new Cat("Rora", 4);
+      // Cat Tom = new Cat("Tom", 2);
+     //   Cat Rora = new Cat("Rora", 4);
 
         System.out.println("I am a test SECOND");
 
@@ -104,20 +108,43 @@ public class TestAnimal {
 
     @Test
     public void thirdAnimalTest() {
-        Cat Tom = new Cat("Tom", 2);
-        Cat Rora = new Cat("Rora", 4);
+      //  Cat Tom = new Cat("Tom", 2);
+      //  Cat Rora = new Cat("Rora", 4);
 
         System.out.println("I am a 3rd test");
-        assertEquals(2, 2, "Same age?");
+        assertEquals(Tom.getAge(), Rora.getAge(), "Same age?");
     }
 
     @Test
     public void fourthAnimalTest() {
-        Cat Tom = new Cat("Tom",3);
-        Cat Rora = new Cat("Rora", 4);
+
+        Tom.makeFriendsWith(Rora);
 
         System.out.println("I am a 4th test");
-        assertTrue(false,"Cat is friend with Animals");
+        assertTrue(Tom.isHasFriends(), "TOM HAS FRIENDS ?");
     }
 
+    @Test
+    public void fifthAnimalTest() {
+
+
+        System.out.println("I am a 5th test");
+        assertEquals(Tom.getName(), Rora.getName(), "Same name?");
+    }
+
+    @Test
+    public  void sixthAnimalTest() {
+        System.out.println("i am 6th test");
+        Tom.makeFriendsWith(Rora);
+        Rora.makeFriendsWith(Baloo);
+
+        System.out.println(Rora.friends);
+        System.out.println("-------");
+        System.out.println(Tom.friends);
+
+        assertTrue(Rora.friends.contains(Baloo),"Rora is friend with Baloo");
+        //assertFalse(Baloo.isHasFriends(), "Baloo;s friends");
+        assertTrue(Baloo.friends.contains(Tom), "Baloo is friend with Tom");
+
+    }
 }

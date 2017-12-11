@@ -7,6 +7,13 @@ public class Dragon extends AbstractAnimal {
         super(name, age);
     }
 
+    @Override
+    public String toString() {
+        return "Dragon{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
     public void say() {
         System.out.println("Dragon " + name + " says Arggggg");
 

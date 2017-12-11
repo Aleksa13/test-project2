@@ -15,5 +15,10 @@ public interface Animal {
      * @return int value
      */
     int getAge();
+    String getName();
+
+    boolean isHasFriends();
+    void setHasFriends(boolean hasFriends);
+    void addFriend(Animal animal);
 
 }
