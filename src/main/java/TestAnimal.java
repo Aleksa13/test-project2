@@ -1,4 +1,9 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
 import javax.swing.plaf.basic.BasicLookAndFeel;
 
@@ -12,9 +17,10 @@ import static org.testng.Assert.assertTrue;
 
 
 public class TestAnimal {
-    Cat Tom = new Cat("Tom",3);
-    Cat Rora = new Cat("Rora", 4);
-    Dragon Baloo = new Dragon( "Baloo", 150);
+    Cat Tom = new Cat(" Tom",3);
+    Cat Rora = new Cat(" Rora", 4);
+    Dragon Baloo = new Dragon( " Baloo", 150);
+    SoftAssert softAssert = new SoftAssert();
 
 //    public static void main(String[] args) {
 //        System.out.println("Hello World!");
@@ -44,7 +50,7 @@ public class TestAnimal {
 //        Baloo.fly();
 
 
-    @BeforeMethod
+    @BeforeMethod //(alwaysRun = true, dependsOnGroups = {"animal"}, dependsOnMethods = {"firstAnimalTest"})
     public void Method() {
         System.out.println("I am a before method");
     }
@@ -64,10 +70,15 @@ public class TestAnimal {
         System.out.println("I am a before Test");
     }
 
+    @BeforeGroups
+    public void Groups() {
+       System.out.println("I am a before Groups");
+   }
+
 
     @AfterMethod
     public void Method1() {
-        System.out.println("I am a after Method1");
+        System.out.println("I am a after Method");
     }
 
     @AfterClass
@@ -85,8 +96,12 @@ public class TestAnimal {
         System.out.println("I am a after Test");
     }
 
+   @AfterGroups
+   public void Groups1() {
+       System.out.println("I am a after Groups"); }
 
-    @Test
+
+    @Test(groups= {"animal"})
     public void firstAnimalTest() {
 
         System.out.println("I am a test ONE");
@@ -94,25 +109,25 @@ public class TestAnimal {
     }
 
 
-    @Test
+    @Test (enabled = true)
     public void secondAnimalTest() {
       // Cat Tom = new Cat("Tom", 2);
      //   Cat Rora = new Cat("Rora", 4);
 
         System.out.println("I am a test SECOND");
 
-        assertEquals(Tom, Rora, "Same cat?");
-        assertEquals(2, 5, "Expected value should be 5");
+        softAssert.assertEquals(Tom, Rora, "Same cat?");
+        softAssert.assertEquals(2, 5, "Expected value should be 5");
+        softAssert.assertAll();
 
     }
 
     @Test
     public void thirdAnimalTest() {
-      //  Cat Tom = new Cat("Tom", 2);
-      //  Cat Rora = new Cat("Rora", 4);
 
         System.out.println("I am a 3rd test");
-        assertEquals(Tom.getAge(), Rora.getAge(), "Same age?");
+        softAssert.assertEquals(Tom.getAge(), Rora.getAge(), "Same age?");
+        softAssert.assertAll();
     }
 
     @Test
@@ -121,7 +136,8 @@ public class TestAnimal {
         Tom.makeFriendsWith(Rora);
 
         System.out.println("I am a 4th test");
-        assertTrue(Tom.isHasFriends(), "TOM HAS FRIENDS ?");
+        softAssert.assertTrue(Tom.isHasFriends(), "TOM HAS FRIENDS ?");
+        softAssert.assertAll();
     }
 
     @Test
@@ -129,11 +145,12 @@ public class TestAnimal {
 
 
         System.out.println("I am a 5th test");
-        assertEquals(Tom.getName(), Rora.getName(), "Same name?");
+        softAssert.assertEquals(Tom.getName(), Rora.getName(), "Same name?");
+        softAssert.assertAll();
     }
 
     @Test
-    public  void sixthAnimalTest() {
+    public void sixthAnimalTest() {
         System.out.println("i am 6th test");
         Tom.makeFriendsWith(Rora);
         Rora.makeFriendsWith(Baloo);
@@ -142,9 +159,24 @@ public class TestAnimal {
         System.out.println("-------");
         System.out.println(Tom.friends);
 
-        assertTrue(Rora.friends.contains(Baloo),"Rora is friend with Baloo");
-        //assertFalse(Baloo.isHasFriends(), "Baloo;s friends");
-        assertTrue(Baloo.friends.contains(Tom), "Baloo is friend with Tom");
+        softAssert.assertTrue(Rora.friends.contains(Baloo)," Rora is friend with Baloo");
+        softAssert.assertFalse(Baloo.isHasFriends(), "Baloo;s friends");
+        softAssert.assertTrue(Baloo.friends.contains(Tom), " Baloo is friend with Tom");
+        softAssert.assertAll();
+    }
 
+    @Test
+    public void testGoogleSearch() throws InterruptedException {
+        // Optional, if not specified, WebDriver will search your path for chromedriver.
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
+
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.google.com/xhtml");
+        Thread.sleep(5000);  // Let the user actually see something!
+        WebElement searchBox = driver.findElement(By.name("q"));
+        searchBox.sendKeys("ChromeDriver");
+        searchBox.submit();
+        Thread.sleep(5000);  // Let the user actually see something!
+        driver.quit();
     }
 }
