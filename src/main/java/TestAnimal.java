@@ -184,29 +184,29 @@ public class TestAnimal {
         // Optional, if not specified, WebDriver will search your path for chromedriver.
         System.setProperty("webdriver.chrome.driver", "chromedriver");
         WebDriver driver = new ChromeDriver();
-//        driver.get("https://www.w3schools.com/css/default.asp");
-//        Thread.sleep(5000);  // Let the user actually see something!
-//        WebElement Homebutton = driver.findElement(By.cssSelector("a.w3-left.w3-btn"));
-//        WebElement Nextbutton = driver.findElement(By.cssSelector("a.w3-right.w3-btn"));
-//
-//        Nextbutton.isDisplayed();
-//        Homebutton.isDisplayed();
-//
-//        WebElement TryIt = driver.findElement(By.cssSelector("a.w3-btn.w3-margin-bottom"));
-//        TryIt.click();
+        driver.get("https://www.w3schools.com/css/default.asp");
+        Thread.sleep(5000);  // Let the user actually see something!
+        WebElement Homebutton = driver.findElement(By.cssSelector("a.w3-left.w3-btn"));
+        WebElement Nextbutton = driver.findElement(By.cssSelector("a.w3-right.w3-btn"));
 
+        assertTrue(Nextbutton.isDisplayed(), "Next Button is displayed");
+        assertTrue(Homebutton.isDisplayed(),"Home button is displayed");
+
+        WebElement TryIt = driver.findElement(By.cssSelector("a.w3-btn.w3-margin-bottom"));
+        TryIt.click();
+        Thread.sleep(5000);
         driver.get("https://www.w3schools.com/css/tryit.asp?filename=trycss_default");
+        Thread.sleep(5000);
 
-        //WebElement editfield = driver.findElement(By.cssSelector("#textareawrapper div div.CodeMirror-scroll div.CodeMirror-sizer div div div div.CodeMirror-code"));
-        WebElement editfield = driver.findElement(By.cssSelector("#textareawrapper div div.CodeMirror-scroll div.CodeMirror-sizer div div div div.CodeMirror-code pre:nth-child(22) span span:nth-child(4)"));
+//        //WebElement editfield = driver.findElement(By.cssSelector("#textareawrapper div div.CodeMirror-scroll div.CodeMirror-sizer div div div div.CodeMirror-code"));
+//        WebElement editfield = driver.findElement(By.cssSelector("#textareawrapper #textareaCode"));
+//
+//        editfield.click();
+//        editfield.clear();
+//        editfield.sendKeys("blablablablabla");
 
-        editfield.click();
-        editfield.clear();
-        editfield.sendKeys("<p><a> href=https://www.w3schools.com/html/>Visit our HTML tutorial</a></p>");
 
-
-
-        WebElement Runbutton = driver.findElement(By.cssSelector("body div.trytopnav div button"));
+        WebElement Runbutton = driver.findElement(By.cssSelector("body > div.trytopnav > div > button"));
         Runbutton.click();
         Thread.sleep(5000);  // Let the user actually see something!
         driver.quit();
